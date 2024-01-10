@@ -1,5 +1,7 @@
 
 import React, { useRef, useState, useEffect } from "react";
+import { AGesture, BGesture, CGesture, DGesture, EGesture, FGesture, GGesture, HGesture, IGesture, JGesture, KGesture, LGesture, MGesture, NGesture, OGesture, PGesture, QGesture, RGesture, SGesture, TGesture, UGesture, VGesture, WGesture, XGesture, YGesture, ZGesture } from "./Gestures.js";
+import { drawHand } from "./Hand.js";
 
 import * as tf from "@tensorflow/tfjs";
 import * as handpose from "@tensorflow-models/handpose";
@@ -22,10 +24,11 @@ function App() {
  
     setInterval(() => {
       detect(net);
-    }, 10);
+    }, 150);
   };
 
   console.log(fp.Gestures.ThumbsDownGesture);
+  
 
   const detect = async (net) => {
     if (
@@ -45,26 +48,52 @@ function App() {
       canvasRef.current.height = videoHeight;
 
       const hand = await net.estimateHands(video);
+      
    
       if (hand.length > 0) {
-        const GE = new fp.GestureEstimator([
-          fp.Gestures.ThumbsUpGesture
-        ]);
+        
+        const newGestures = 
+        [
+          AGesture, 
+          BGesture, 
+          CGesture, 
+          DGesture, 
+          EGesture, 
+          FGesture, 
+          GGesture, 
+          HGesture, 
+          IGesture, 
+          JGesture, 
+          KGesture, 
+          LGesture, 
+          MGesture, 
+          NGesture, 
+          OGesture, 
+          PGesture,
+          QGesture,
+          RGesture,
+          SGesture,
+          TGesture,
+          UGesture,
+          VGesture,
+          WGesture,
+          XGesture,
+          YGesture,
+        ];
+        const GE = new fp.GestureEstimator(newGestures);
         const gesture = await GE.estimate(hand[0].landmarks, 4);
         if (gesture.gestures !== undefined && gesture.gestures.length > 0) {
-        
           const confidence = gesture.gestures.map(
             (prediction) => prediction.confidence
           );
           const mxConfidence = confidence.indexOf(
             Math.max.apply(null, confidence)
           );
-        
-          setEmoji(gesture.gestures[mxConfidence].name);
-          console.log("thumbs");
+          console.log(gesture.gestures[mxConfidence].name);
         }
       }
-      
+      const ctx = canvasRef.current.getContext("2d")
+      drawHand(hand, ctx)
     }
   };
 
