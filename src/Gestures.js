@@ -244,6 +244,7 @@ for (let finger of [Finger.Middle, Finger.Ring, Finger.Index]) {
   QGesture.addDirection(finger, FingerDirection.VerticalDown, 1.0);
 }
 
+//R
 RGesture.addCurl(Finger.Thumb, FingerCurl.HalfCurl, 1.0);
 RGesture.addDirection(Finger.Thumb, FingerDirection.DiagonalUpLeft, 1.0);
 
@@ -307,7 +308,7 @@ VGesture.addCurl(Finger.Thumb, FingerCurl.NoCurl, 1.0);
 VGesture.addDirection(Finger.Thumb, FingerDirection.DiagonalUpLeft, 1.0);
 
 VGesture.addCurl(Finger.Index, FingerCurl.NoCurl, 1.0);
-VGesture.addDirection(Finger.Index, FingerDirection.DiagonalUpRight, 1.0);
+VGesture.addDirection(Finger.Index, FingerDirection.DiagonalUpLeft, 1.0);
 
 VGesture.addCurl(Finger.Middle, FingerCurl.NoCurl, 1.0);
 VGesture.addDirection(Finger.Middle, FingerDirection.VerticalUp, 1.0);
@@ -316,7 +317,7 @@ VGesture.addCurl(Finger.Ring, FingerCurl.FullCurl, 1.0);
 VGesture.addDirection(Finger.Ring, FingerDirection.VerticalUp, 1.0);
 
 VGesture.addCurl(Finger.Pinky, FingerCurl.FullCurl, 1.0);
-VGesture.addDirection(Finger.Pinky, FingerDirection.DiagonalUpLeft, 1.0);
+VGesture.addDirection(Finger.Pinky, FingerDirection.DiagonalUpRight, 1.0);
 
 //W
 WGesture.addCurl(Finger.Thumb, FingerCurl.HalfCurl, 1.0);

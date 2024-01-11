@@ -83,3 +83,11 @@ canvas{
   height: auto;
 
 }
+
+.Result{
+  font-size: 420px;
+  color: lightgreen;
+  text-align: center;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}

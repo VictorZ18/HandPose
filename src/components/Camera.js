@@ -23,12 +23,12 @@ const webcamRef = useRef(null);
  
     setInterval(() => {
       detect(net);
-    }, 150);
+    }, 10);
   };
 
   console.log(fp.Gestures.ThumbsDownGesture);
   
-
+  let result = "";
   const detect = async (net) => {
     if (
       typeof webcamRef.current !== "undefined" &&
@@ -81,7 +81,7 @@ const webcamRef = useRef(null);
           ZGesture
         ];
         const GE = new fp.GestureEstimator(newGestures);
-        const gesture = await GE.estimate(hand[0].landmarks, 6.5);
+        const gesture = await GE.estimate(hand[0].landmarks, 8);
         if (gesture.gestures !== undefined && gesture.gestures.length > 0) {
           const confidence = gesture.gestures.map(
             (prediction) => prediction.confidence
@@ -89,7 +89,10 @@ const webcamRef = useRef(null);
           const mxConfidence = confidence.indexOf(
             Math.max.apply(null, confidence)
           );
-          console.log(gesture.gestures[mxConfidence].name);
+          result = gesture.gestures[mxConfidence].name
+          document.querySelector(".Result").innerHTML = result;
+          console.log(result);
+
         }
       }
       const ctx = canvasRef.current.getContext("2d")
@@ -107,7 +110,11 @@ const webcamRef = useRef(null);
                 Let's see if the AI can recognize which letter you're trying to do.<br></br>
             </p>
             <p>
-                Here is some inspiration to test our AI:
+                (It may take multiple tries for the AI to recognize a letter,<br></br>
+                you can vary the angle or oritentation of your hand to help it.)<br></br>
+            </p>
+            <p>
+              Here is some inspiration to test our AI:
             </p>
             <img className="ASL" src={ASL} alt="ASL Alphabet" />
     </div>
@@ -122,9 +129,10 @@ const webcamRef = useRef(null);
         <p>
             The AI thinks you're making the letter:
         </p>
-        <h1>
-            A
+        <h1 className="Result">
         </h1>
+        <p className="Accuracy">
+        </p>
     </div>
   </header>
   );
