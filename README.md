@@ -4,11 +4,19 @@ It's goal is to recognize the ASL(American Sign Language) alphabet.
 This is a REACT app.
 This is my first time using REACT for a project.
 
-First step is initialize NPM with:
+First step to clone the project into a new directory:
+
+git clone https://github.com/VictorZ18/HandPose.git
+
+Open the new map:
+
+cd Handpose
+
+Initialize NPM:
 
 npm install
 
-To laucnh installation of the packages run:
+To launch installation of the packages run:
 
 npm i 
 
