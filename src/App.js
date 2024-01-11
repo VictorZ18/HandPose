@@ -79,9 +79,10 @@ function App() {
           WGesture,
           XGesture,
           YGesture,
+          ZGesture
         ];
         const GE = new fp.GestureEstimator(newGestures);
-        const gesture = await GE.estimate(hand[0].landmarks, 4);
+        const gesture = await GE.estimate(hand[0].landmarks, 6.5);
         if (gesture.gestures !== undefined && gesture.gestures.length > 0) {
           const confidence = gesture.gestures.map(
             (prediction) => prediction.confidence
